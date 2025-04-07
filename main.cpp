@@ -68,7 +68,6 @@ void draw(){
     std::cout << "Score:" << score << std::endl;
     float displaySpeed = 1.0 / static_cast<float>(speed) * 500000;
     std::cout << "Speed: " << std::fixed << std::setprecision(2) << displaySpeed << std::endl;
-
 }
 
 int kbhit() {
@@ -96,7 +95,6 @@ int kbhit() {
     return 0;  // No key was pressed
 }
 
-
 void input() {
     if (kbhit()) {
         char ch = getchar();
@@ -116,9 +114,7 @@ void input() {
     }
 }
 
-
-
-void logic(){
+void logic() {
     int prevX = tailX[0];
     int prevY = tailY[0];
     int prev2X, prev2Y;
@@ -167,10 +163,12 @@ int main(){
     std::srand(static_cast<unsigned int>(std::time(0)));
     setup();
     while(!GameOver){
-        draw();
-        input();
-        logic();
-        usleep(speed);
+        input();  // Process input immediately
+        logic();  // Update game logic
+        draw();   // Render the frame
+
+        // No longer sleep for the full speed interval; keep it snappy
+        usleep(speed);  
     }
 
     return 0;
