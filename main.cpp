@@ -125,26 +125,19 @@ int kbhit() {
 
 void input() {
     if (kbhit()) {
-        char ch = getchar();  // Get the character
-        switch (ch) {
-            case 'a':  // Move left
-                dir = LEFT;
-                break;
-            case 'd':  // Move right
-                dir = RIGHT;
-                break;
-            case 's':  // Move down
-                dir = DOWN;
-                break;
-            case 'w':  // Move up
-                dir = UP;
-                break;
-            case 'x':  // End the game
-                GameOver = true;
-                break;
-            default:
-                // Handle other key presses if necessary
-                break;
+        char ch = getchar();
+
+        // Check for out-of-bounds before allowing direction change
+        if (ch == 'a' && x > 0) {  // Move left, but not past the left boundary
+            dir = LEFT;
+        } else if (ch == 'd' && x < WIDTH - 1) {  // Move right, but not past the right boundary
+            dir = RIGHT;
+        } else if (ch == 's' && y < HEIGHT - 1) {  // Move down, but not past the bottom boundary
+            dir = DOWN;
+        } else if (ch == 'w' && y > 0) {  // Move up, but not past the top boundary
+            dir = UP;
+        } else if (ch == 'x') {  // End the game
+            GameOver = true;
         }
     }
 }
