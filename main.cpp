@@ -1,5 +1,4 @@
 #include <iostream>
-//#include "conio.h"
 #include <termios.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -71,31 +70,6 @@ void draw(){
     std::cout << "Speed: " << std::fixed << std::setprecision(2) << displaySpeed << std::endl;
 
 }
-
-/*
-void input(){
-    if (kbhit()){
-        switch (_getche()){
-            case 'a':
-                dir = LEFT;
-                break;
-            case 'd':
-                dir = RIGHT;
-                break;
-            case 's':
-                dir = DOWN;
-                break;
-            case 'w':
-                dir = UP;
-                break;
-            case 'x':
-                GameOver = true;
-                break;
-        }
-    }
-}
-
-*/
 
 int kbhit() {
     struct termios oldt, newt;
